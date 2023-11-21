@@ -1,7 +1,18 @@
 
 # Вывод уравнения в упрощенной форме.
 def output_reduced_form(formula):
-    print(f"Reduced form: 4 * X^0 + 4 * X^1 - 9.3 * X^2 = 0")
+    reduced_form = ""
+    if formula["x0"]:
+        reduced_form += str(formula["x0"]) + ' * X^0 '
+    if formula["x1"]:
+        reduced_form += str(formula["x1"]) + ' * X^1 '
+    if formula["x2"]:
+        reduced_form += str(formula["x2"]) + ' * X^2 '
+    if formula["x2"]:
+        reduced_form += str(formula["x3"]) + ' * X^3 '
+    reduced_form += " = 0"
+
+    print(f"Reduced form: {reduced_form}")
     
 
 

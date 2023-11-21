@@ -1,12 +1,21 @@
 import sys
+from equation_parser import argv_parser
+from output_formatter import output_reduced_form
 
 
 
 def main(argv):
-	formula = {"x0":0, "x1": 0, "x2": 0, "x3": 0}
-	pass
+    if len(argv) == 1:
+        print("There must be one argument")
+        return
+    elif len(argv) != 2:
+        print("Must be only one argument")
+        return
 
-
+    # try
+    # check argv
+    formula = argv_parser(argv[1])
+    output_reduced_form(formula)
 
 
 
