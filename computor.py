@@ -1,6 +1,7 @@
 import sys
 from equation_parser import argv_parser
-from output_formatter import output_forms
+from output_formatter import output_reduced_form
+from equation_solver import solve_method
 
 
 
@@ -15,7 +16,10 @@ def main(argv):
     try:
     # check argv
         formula = argv_parser(argv[1])
-        output_forms(formula)
+        output_reduced_form(formula)
+        solve_method(formula)
+
+
 
     except IndexError:
         print("IndexError") #DELETE

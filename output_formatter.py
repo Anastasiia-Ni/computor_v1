@@ -27,9 +27,9 @@ def output_reduced_form(formula):
 
 
 # Вывод степени полинома.
-def output_polynomial_degree(formula):
-    max_key = max(i for i in range(len(formula)) if f"x{i}" in formula)
-    print(f"Polynomial degree: {max_key}")
+def output_polynomial_degree(polynom):
+
+    print(f"Polynomial degree: {polynom}")
     # print("The polynomial degree is strictly greater than 2, I can't solve.")
 
 
@@ -53,6 +53,5 @@ def output_solution(discriminant, answer):
 def output_intermediate_steps():
     pass
 
-def output_forms(formula):
-    output_reduced_form(formula)
-    output_polynomial_degree(formula)
+# def output_forms(formula):
+

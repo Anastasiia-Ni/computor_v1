@@ -1,6 +1,7 @@
 
 def argv_check():
     # count('=') == 1
+    # 
     pass
 
 def split_equation(part_str):
@@ -16,29 +17,6 @@ def split_equation(part_str):
                 split_parts.append('-' + sub_part)
     
     return split_parts
-
-
-# def case0(formula, num):
-#     formula["x0"] += num
-
-# def case1(formula, num):
-#     formula["x1"] += num
-
-# def case2(formula, num):
-#     formula["x2"] += num
-
-# def case3(formula, num):
-#     formula["x3"] += num
-
-
-# def switch_case(case_value, formula, num):
-#     switch_dict = {
-#         0: case0,
-#         1: case1,
-#         2: case2,
-#         3: case3
-#     }
-#     switch_dict.get(case_value)(formula, num)
 
 
 def argv_parser(arg_str):
@@ -57,7 +35,6 @@ def argv_parser(arg_str):
             num = float(s[:index])
             index += 3
             order = int(s[index])
-            print(num)
             formula[f'x{order}'] += num
        
     for s in right_side:
@@ -66,11 +43,12 @@ def argv_parser(arg_str):
             num = float(s[:index])
             index += 3
             order = int(s[index])
-            print(num)
             formula[f'x{order}'] += -num
 
-    print(left_side)
-    print(right_side)
+    return formula
+
+    # print(left_side)
+    # print(right_side)
 
 
 
