@@ -24,6 +24,8 @@ def main(argv):
     except IndexError:
         print("IndexError") #DELETE
         print ("Entry don't have the right format!")
+    except ZeroDivisionError:
+        print("ZeroDivisionError")
 
 
 

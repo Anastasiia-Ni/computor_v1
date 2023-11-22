@@ -19,7 +19,6 @@ def output_reduced_form(formula):
         #     elif i < 3:
         #         reduced_form += f"+ {coef} * X^{i} "
 
-
     reduced_form += "= 0"
 
     print(f"Reduced form: {reduced_form}")
