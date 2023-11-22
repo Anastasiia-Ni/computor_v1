@@ -1,6 +1,6 @@
 import sys
 from equation_parser import argv_parser
-from output_formatter import output_reduced_form
+from output_formatter import output_forms
 
 
 
@@ -12,10 +12,14 @@ def main(argv):
         print("Must be only one argument")
         return
 
-    # try
+    try:
     # check argv
-    formula = argv_parser(argv[1])
-    output_reduced_form(formula)
+        formula = argv_parser(argv[1])
+        output_forms(formula)
+
+    except IndexError:
+        print("IndexError") #DELETE
+        print ("Entry don't have the right format!")
 
 
 

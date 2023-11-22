@@ -2,15 +2,25 @@
 # Вывод уравнения в упрощенной форме.
 def output_reduced_form(formula):
     reduced_form = ""
-    if formula["x0"]:
-        reduced_form += str(formula["x0"]) + ' * X^0 '
-    if formula["x1"]:
-        reduced_form += str(formula["x1"]) + ' * X^1 '
-    if formula["x2"]:
-        reduced_form += str(formula["x2"]) + ' * X^2 '
-    if formula["x2"]:
-        reduced_form += str(formula["x3"]) + ' * X^3 '
-    reduced_form += " = 0"
+
+    coefficients = [formula[f'x{i}'] for i in range(4)]
+    for i, coef in enumerate(coefficients):
+        # Преобразовываем флоаты в целые числа, если после точки нет чисел
+        coef = int(coef) if float(coef).is_integer() else coef
+        if coef > 0 and i == 0:
+            reduced_form += f"{coef} * X^{i} "
+        elif coef > 0 and i > 0:
+            reduced_form += f"+ {coef} * X^{i} "
+        elif coef < 0:
+            reduced_form += f"- {abs(coef)} * X^{i} " # пробел после знака -
+        # else:   # case 0 пока мешает, потом может верну
+        #     if i == 0:
+        #         reduced_form += f"{coef} * X^{i} "
+        #     elif i < 3:
+        #         reduced_form += f"+ {coef} * X^{i} "
+
+
+    reduced_form += "= 0"
 
     print(f"Reduced form: {reduced_form}")
     
@@ -18,7 +28,8 @@ def output_reduced_form(formula):
 
 # Вывод степени полинома.
 def output_polynomial_degree(formula):
-    print(f"Polynomial degree: ")
+    max_key = max(i for i in range(len(formula)) if f"x{i}" in formula)
+    print(f"Polynomial degree: {max_key}")
     # print("The polynomial degree is strictly greater than 2, I can't solve.")
 
 
@@ -41,3 +52,7 @@ def output_solution(discriminant, answer):
 # Вывод промежуточных шагов. (для бонуса)
 def output_intermediate_steps():
     pass
+
+def output_forms(formula):
+    output_reduced_form(formula)
+    output_polynomial_degree(formula)
