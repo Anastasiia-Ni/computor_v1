@@ -68,7 +68,25 @@ def discriminant_positive(formula, d):
 
 
 def discriminant_negative(formula, d):
-    pass
+    print('The solutions are:')
+    b = formula["x1"]
+    a = formula["x2"]
+
+    print(f"X = (-({conv_float(b)}) ± √{conv_float(d)}) / (2 * ({conv_float(a)}))")
+
+    d = abs(d)
+    x1 = (-b + (d ** 0.5)) / (2 * a)
+    x2 = (-b - (d ** 0.5)) / (2 * a)
+
+    sign = '+' if b < 0 else '-'
+    b2 = abs(b)
+    print(f"X = ({sign}{b2} ± {conv_float(d ** 0.5)}√-1) / ({conv_float(2 * a)})")
+    print("Let √-1 = i imaginary unit, then")
+    print(f"X1 = ({conv_float(-b + (d ** 0.5))}i) / ({conv_float(2 * a)})")
+    print(f"X2 = ({conv_float(-b - (d ** 0.5))}i) / ({conv_float(2 * a)})")
+
+    print(f"X1 = {conv_float(x1)}i")
+    print(f"X2 = {conv_float(x2)}i")
 
 
 def solve_quadratic_equation(formula):
