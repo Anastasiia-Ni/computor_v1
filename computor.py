@@ -1,7 +1,8 @@
 import sys
-from equation_parser import argv_parser
+from equation_parser import argv_parser, argv_check
 from output_formatter import output_reduced_form
 from equation_solver import solve_method
+from utils import print_error
 
 
 
@@ -14,11 +15,13 @@ def main(argv):
         return
 
     try:
-    # check argv
-        formula = argv_parser(argv[1])
+        arg_str = argv[1].upper().replace(" ", "")
+        if not argv_check(arg_str):
+            print_error()
+            return
+        formula = argv_parser(arg_str)
         output_reduced_form(formula)
         solve_method(formula)
-
 
 
     except IndexError:
