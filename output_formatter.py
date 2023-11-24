@@ -7,9 +7,9 @@ def output_reduced_form(formula):
     for i, coef in enumerate(coefficients):
         # Преобразовываем флоаты в целые числа, если после точки нет чисел
         coef = int(coef) if float(coef).is_integer() else coef
-        if coef > 0 and i == 0:
+        if not reduced_form:
             reduced_form += f"{coef} * X^{i} "
-        elif coef > 0 and i > 0:
+        elif coef > 0:
             reduced_form += f"+ {coef} * X^{i} "
         elif coef < 0:
             reduced_form += f"- {abs(coef)} * X^{i} " # пробел после знака -
@@ -23,6 +23,22 @@ def output_reduced_form(formula):
 
     print(f"Reduced form: {reduced_form}")
     
+
+def print_intermediate_form(f_list):
+    # f_list = {"x0": [], "x1": [], "x2": [], "x3": []}
+    expression = ""
+    for i, (key, values) in enumerate(f_list.items()):
+        for _, value in enumerate(values):
+            value = int(value) if float(value).is_integer() else value
+            if not expression:
+                expression += f"{value} * X^{i} "
+            elif value > 0:
+                expression += f"+ {value} * X^{i} "
+            elif value < 0:
+                expression += f"- {abs(value)} * X^{i} "
+    
+    expression += "= 0"
+    print(f"Intermediate form: {expression}")
 
 
 # Вывод степени полинома.

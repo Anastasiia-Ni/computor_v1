@@ -1,3 +1,4 @@
+from output_formatter import print_intermediate_form
 
 def argv_check(input_str):
     
@@ -47,9 +48,36 @@ def split_equation(part_str):
     return split_parts
 
 
+def parse_sides(f_list, side, p):
+    for s in side:
+        index = s.find("*X^")
+        if (index > 0):
+            num = float(s[:index])
+            index += 3
+            order = int(s[index])
+            f_list[f'x{order}'].append(num) if p == 'l' else f_list[f'x{order}'].append(-num)
+        else:
+            index_any = s.find("X^")
+            if index_any >= 0:
+                order = int(s[index_any + 2])
+                f_list[f'x{order}'].append(1) if p == 'l' else f_list[f'x{order}'].append(-1)
+            else:
+                index1 = s.find("X")
+                if index1 == 0:
+                    f_list['x1'].append(1) if p == 'l' else f_list['x1'].append(-1)
+                elif index1 > 0 :
+                    num = float(s[:index - 1])
+                    f_list['x1'].append(num) if p == 'l' else f_list['x1'].append(-num)
+                elif s:
+                    num = float(s)
+                    f_list['x0'].append(num) if p == 'l' else f_list['x0'].append(-num)
+
+
+
 def argv_parser(arg_str):
     print("PARSING START")
-    formula = {"x0": 0, "x1": 0, "x2": 0, "x3": 0}
+    f_list = {"x0": [], "x1": [], "x2": [], "x3": []}
+    # formula = {"x0": 0, "x1": 0, "x2": 0, "x3": 0}
 
     sides_equation = arg_str.split('=')
 
@@ -59,51 +87,10 @@ def argv_parser(arg_str):
     print(left_side) #DELETE
     print(right_side) #DELETE
 
-    for s in left_side:
-        index = s.find("*X^")
-        if (index > 0):
-            num = float(s[:index])
-            index += 3
-            order = int(s[index])
-            formula[f'x{order}'] += num
-        else:
-            index_any = s.find("X^")
-            if index_any >= 0:
-                order = int(s[index_any + 2])
-                formula[f'x{order}'] += 1
-            else:
-                index1 = s.find("X")
-                if index1 == 0:
-                    formula['x1'] += 1
-                elif index1 > 0 :
-                    num = float(s[:index - 1])
-                    formula['x1'] += num
-                elif s:
-                    num = float(s)
-                    formula['x0'] += num
+    parse_sides(f_list, left_side, 'l')
+    parse_sides(f_list, right_side, 'r')
+    print_intermediate_form(f_list) # распечатать полную формулу
 
-    for s in right_side:
-        index = s.find("*X^")
-        if (index > 0):
-            num = float(s[:index])
-            index += 3
-            order = int(s[index])
-            formula[f'x{order}'] -= num
-        else:
-            index_any = s.find("X^")
-            if index_any >= 0:
-                order = int(s[index_any + 2])
-                formula[f'x{order}'] -= 1
-            else:
-                index1 = s.find("X")
-                if index1 == 0:
-                    formula['x1'] -= 1
-                elif index1 > 0 :
-                    num = float(s[:index - 1])
-                    formula['x1'] -= num
-                elif s:
-                    num = float(s)
-                    formula['x0'] -= num
-
-    return formula
-    
+    # formula = {key: sum(values) for key, values in f_list.items()}
+    # return formula
+    return {key: sum(values) for key, values in f_list.items()}
