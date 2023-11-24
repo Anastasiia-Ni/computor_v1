@@ -26,6 +26,8 @@ def argv_check(input_str):
             return False
         if char == '.' and i > 0 and input_str[i - 1] == '.':
             return False
+        if char == 'X' and i > 0 and input_str[i - 1] not in set('*+-='):
+            return False
 
     return True
 
@@ -47,12 +49,15 @@ def split_equation(part_str):
 
 def argv_parser(arg_str):
     print("PARSING START")
-    formula = {"x0":0, "x1": 0, "x2": 0, "x3": 0}
+    formula = {"x0": 0, "x1": 0, "x2": 0, "x3": 0}
 
     sides_equation = arg_str.split('=')
 
     left_side = split_equation(sides_equation[0])
     right_side = split_equation(sides_equation[1])
+
+    print(left_side) #DELETE
+    print(right_side) #DELETE
 
     for s in left_side:
         index = s.find("*X^")
@@ -61,25 +66,44 @@ def argv_parser(arg_str):
             index += 3
             order = int(s[index])
             formula[f'x{order}'] += num
-       
+        else:
+            index_any = s.find("X^")
+            if index_any >= 0:
+                order = int(s[index_any + 2])
+                formula[f'x{order}'] += 1
+            else:
+                index1 = s.find("X")
+                if index1 == 0:
+                    formula['x1'] += 1
+                elif index1 > 0 :
+                    num = float(s[:index - 1])
+                    formula['x1'] += num
+                elif s:
+                    num = float(s)
+                    formula['x0'] += num
+
     for s in right_side:
         index = s.find("*X^")
         if (index > 0):
             num = float(s[:index])
             index += 3
             order = int(s[index])
-            formula[f'x{order}'] += -num
-
-    return formula
-
-    # print(left_side)
-    # print(right_side)
-
-
-
-
-
-
+            formula[f'x{order}'] -= num
+        else:
+            index_any = s.find("X^")
+            if index_any >= 0:
+                order = int(s[index_any + 2])
+                formula[f'x{order}'] -= 1
+            else:
+                index1 = s.find("X")
+                if index1 == 0:
+                    formula['x1'] -= 1
+                elif index1 > 0 :
+                    num = float(s[:index - 1])
+                    formula['x1'] -= num
+                elif s:
+                    num = float(s)
+                    formula['x0'] -= num
 
     return formula
     

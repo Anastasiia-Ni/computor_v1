@@ -12,7 +12,7 @@ def solve_discriminant2(formula):
     d = d1 - d2
     sign = '+' if d2 < 0 else '-'
     d2 = abs(d2)
-    print(f"Δ = {conv_float(d1)} {sign} {d2}")
+    print(f"Δ = {conv_float(d1)} {sign} {conv_float(d2)}")
     print(f"Δ = {conv_float(d)}")
 
     return d
