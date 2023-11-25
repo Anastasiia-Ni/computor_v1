@@ -1,6 +1,7 @@
 from output_formatter import output_polynomial_degree
 from solve_quadratic import solve_quadratic_equation
 from solve_cubic import solve_cubic_equation
+from utils import irreducible_fraction, print_one_fraction
 
 
 def conv_float(num):
@@ -23,7 +24,9 @@ def solve_linear_equation(formula):
     result = conv_float(result)
     print(f"\033[35m\033[1mX \033[0m\033[35m= {conv_float(-formula['x0'])} / {conv_float(formula['x1'])}\n")
     print(f"The solution is: \033[1m{result}\033[0m\n")
-    pass
+
+    if ir_fract := irreducible_fraction(-formula["x0"], formula["x1"]):
+        print_one_fraction(ir_fract)
 
 
 def solve_method(formula):

@@ -1,4 +1,4 @@
-from utils import conv_float
+from utils import conv_float, irreducible_fraction, print_one_fraction, print_two_fraction
 
 
 def solve_discriminant2(formula):
@@ -23,9 +23,12 @@ def discriminant2_zero(formula, d):
     a = formula["x2"]
     print(f"X = -({conv_float(b)}) / (2 * ({conv_float(a)}))")
     print(f"X = -({conv_float(b)}) / ({conv_float(2 * a)})\n")
-    x = b / (2 * a)
+    x = -b / (2 * a)
     print("\033[35mThe solution is:\033[0m")
-    print(f"X = \033[35m\033[1m{conv_float(x)}\n")
+    print(f"X = \033[35m\033[1m{conv_float(x)}\033[0m\n")
+
+    if ir_fract := irreducible_fraction(-b, 2 * a):
+        print_one_fraction(ir_fract)
 
 
 def discriminant2_positive(formula, d):
@@ -47,6 +50,12 @@ def discriminant2_positive(formula, d):
     print("\033[35mThe solutions are:\033[0m")
     print(f"X1 = \033[35m\033[1m{conv_float(x1)}\033[0m")
     print(f"X2 = \033[35m\033[1m{conv_float(x2)}\033[0m\n")
+
+    ir_fract1 = irreducible_fraction(-b + (d ** 0.5), 2 * a)
+    ir_fract2 = irreducible_fraction(-b - (d ** 0.5), 2 * a)
+
+    if ir_fract1 or ir_fract2:
+        print_two_fraction(ir_fract1, ir_fract2)
 
 
 def discriminant2_negative(formula, d):
