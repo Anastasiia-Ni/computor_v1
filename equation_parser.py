@@ -27,8 +27,11 @@ def argv_check(input_str):
             return False
         if char == '.' and i > 0 and input_str[i - 1] == '.':
             return False
-        if char == 'X' and i > 0 and input_str[i - 1] not in set('*+-='):
-            return False
+        if char == 'X':
+            if i > 0 and input_str[i - 1] not in set('*+-='):
+                return False
+            elif i < len(input_str) - 1 and input_str[i + 1] not in set('^=+-'):
+                return False
 
     return True
 
