@@ -5,7 +5,6 @@ from equation_solver import solve_method
 from utils import print_error
 
 
-
 def main(argv):
     if len(argv) == 1:
         print("There must be one argument")
@@ -23,14 +22,14 @@ def main(argv):
         output_reduced_form(formula)
         solve_method(formula)
 
-
     except IndexError:
-        print("IndexError") #DELETE
-        print ("Entry don't have the right format!")
+        print("IndexError")  # DELETE
+        print("Entry don't have the right format!")  # change message
+    except ValueError:
+        print("Entry don't have the right format!")  # change message
     except ZeroDivisionError:
         print("ZeroDivisionError")
 
 
-
 if __name__ == "__main__":
-	main(sys.argv)
+    main(sys.argv)

@@ -12,7 +12,7 @@ def output_reduced_form(formula):
         elif coef > 0:
             reduced_form += f"+ {coef} * X^{i} "
         elif coef < 0:
-            reduced_form += f"- {abs(coef)} * X^{i} " # пробел после знака -
+            reduced_form += f"- {abs(coef)} * X^{i} "  # пробел после знака -
         # else:   # case 0 пока мешает, потом может верну
         #     if i == 0:
         #         reduced_form += f"{coef} * X^{i} "
@@ -20,9 +20,11 @@ def output_reduced_form(formula):
         #         reduced_form += f"+ {coef} * X^{i} "
 
     reduced_form += "= 0"
+    s = max(40, len(reduced_form) + 15)
+    print(f"\033[33m{s * '-'}\033[0m")
+    print(f"\033[33mReduced form: \033[1m{reduced_form}\033[0m")
+    print(f"\033[33m{s * '-'}\033[0m")
 
-    print(f"Reduced form: {reduced_form}")
-    
 
 def print_intermediate_form(f_list):
     # f_list = {"x0": [], "x1": [], "x2": [], "x3": []}
@@ -36,22 +38,18 @@ def print_intermediate_form(f_list):
                 expression += f"+ {value} * X^{i} "
             elif value < 0:
                 expression += f"- {abs(value)} * X^{i} "
-    
+
     expression += "= 0"
-    print(f"Intermediate form: {expression}")
+    s = len(expression) + 20
+    print(f"\033[32m{s * '-'}\033[0m")
+    print(f"\033[32mIntermediate form: \033[1m{expression}\033[0m")
+    print(f"\033[32m{s * '-'}\033[0m\n")
 
 
 # Вывод степени полинома.
 def output_polynomial_degree(polynom):
-
-    print(f"Polynomial degree: {polynom}")
+    print(f"\033[33mPolynomial degree: \033[1m{polynom}\033[0m\n")
     # print("The polynomial degree is strictly greater than 2, I can't solve.")
-
-
-# Вывод решений и информации о дискриминанте (для квадратных уравнений).
-def output_discriminant():
-    pass
-    
 
 
 def output_solution(discriminant, answer):
@@ -62,11 +60,3 @@ def output_solution(discriminant, answer):
     if discriminant == 0:
         print("The solution is:")
         print(answer[0])
-
-
-# Вывод промежуточных шагов. (для бонуса)
-def output_intermediate_steps():
-    pass
-
-# def output_forms(formula):
-

@@ -9,23 +9,27 @@ def conv_float(num):
 
 def addition_monomials(formula):
     if formula["x0"]:
-        print("это уравнение не имеет решений, так как оно неверно")
+        print("\033[35mThis equation has \033[1mno solutions\033[0m "
+              "\033[35mas it is false.\033[0m\n")
     else:
-        print("Это уравнение представляет собой тождество (identity) ")
-        print("Тождество - это утверждение, которое истинно для всех значений переменных.")
+        print("\033[35mThis equation is an \033[1midentity.\033[0m")
+        print("\033[35mAn identity is a statement that is \033[1mtrue "
+            "for all values\033[0m \033[35mof the variables.\033[0m\n")
+
 
 
 def solve_linear_equation(formula):
     result = -formula["x0"] / formula["x1"]
     result = conv_float(result)
-    print(f"The solution is: {result}")
+    print(f"\033[35m\033[1mX \033[0m\033[35m= {conv_float(-formula['x0'])} / {conv_float(formula['x1'])}\n")
+    print(f"The solution is: \033[1m{result}\033[0m\n")
     pass
 
 
 def solve_method(formula):
     # next() используется для получения первого элемента, удовлетворяющего условию
     polynom = next((i for i in range(len(formula)-1, -1, -1) if formula[f'x{i}']), 0)
-    
+
     output_polynomial_degree(polynom)
 
     solutions = {

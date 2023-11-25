@@ -1,8 +1,9 @@
 from utils import conv_float
 # formula = {"x0":0, "x1": 0, "x2": 0, "x3": 0}
 
+
 def solve_discriminant3(a, b, c, d):
-    print(f"Calculate the discriminants:")
+    print("Calculate the discriminants:")
     d0 = b**2 - 3 * a * c
     d1 = b**3 * 2 - 9 * a * b * c + a**2 * 27 * d
 
@@ -30,6 +31,7 @@ def solve_discriminant3(a, b, c, d):
 
     return d0, d1
 
+
 def solve_case4(a, b, c, d, d0, d1):
     p = d0 / (3 * a**2)
     q = d1 / (27 * a**3)
@@ -37,8 +39,6 @@ def solve_case4(a, b, c, d, d0, d1):
     print(p)
     print(q)
     print(discriminant)
-
-
 
 
 # метод Кардано
@@ -77,6 +77,3 @@ def solve_cubic_equation(formula):
     elif d0 == 0 and d1 == 0:
         print("У уравнения три кратных корня")
         # solve_case9(a, b, c, d, d0, d1)
-
-
-    
