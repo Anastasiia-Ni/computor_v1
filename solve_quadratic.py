@@ -18,7 +18,7 @@ def solve_discriminant2(formula):
     return d
 
 
-def discriminant2_zero(formula, d):
+def discriminant2_zero(formula):
     b = formula["x1"]
     a = formula["x2"]
     print(f"X = -({conv_float(b)}) / (2 * ({conv_float(a)}))")

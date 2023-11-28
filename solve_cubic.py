@@ -1,79 +1,171 @@
 from utils import conv_float
+# import cmath
 # formula = {"x0":0, "x1": 0, "x2": 0, "x3": 0}
 
 
-def solve_discriminant3(a, b, c, d):
-    print("Calculate the discriminants:")
-    d0 = b**2 - 3 * a * c
-    d1 = b**3 * 2 - 9 * a * b * c + a**2 * 27 * d
-
-    print(f"Δ0 = ({b})^2 - 3 * ({a}) * ({c})")
-    print(f"Δ1 = 2 * ({b})^3 - 9 * ({a}) * ({b}) * ({c}) + 27 * ({a})^2 * ({d})")
-
-    d1p2 = 3 * a * c
-    d2p2 = 9 * a * b * c
-    d2p3 = 27*a**2*d
-
-    sign1 = '+' if d1p2 < 0 else '-'
-    d1p2 = abs(d1p2)
-
-    sign2 = '+' if d2p2 < 0 else '-'
-    d2p2 = abs(d2p2)
-
-    sign3 = '-' if d2p3 < 0 else '+'
-    d2p3 = abs(d2p3)
-
-    print(f"Δ0 = {conv_float(b**2)} {sign1} {conv_float(d1p2)}")
-    print(f"Δ1 = {conv_float(b**3 * 2)} {sign2} {conv_float(d2p2)} {sign3} {conv_float(d2p3)}")
-
-    print(f"Δ0 = {conv_float(d0)}")
-    print(f"Δ1 = {conv_float(d1)}")
-
-    return d0, d1
-
-
-def solve_case4(a, b, c, d, d0, d1):
-    p = d0 / (3 * a**2)
-    q = d1 / (27 * a**3)
-    discriminant = q**2 / 4 + p**3 / 27
-    print(p)
-    print(q)
-    print(discriminant)
-
-
-# метод Кардано
 def solve_cubic_equation(formula):
-    print("The solutions (Cardano's Method) are:")
+
+    p, q = find_coefficients(formula)
+    discriminant = solve_discriminant3(p, q)
+
+    if discriminant > 0:
+        print("\033[35mThe discriminant is positive, the equation has "
+              "one real and two complex solutions.\033[0m")
+        discriminant3_positive(formula, discriminant, q)
+    elif discriminant == 0:
+        print("\033[35mDiscriminant is zero, all three roots are real, "
+              "two or three of them are the same.\033[0m")
+        discriminant3_zero(formula, q)
+    else:
+        print("\033[35mThe discriminant is negative, the equation has "
+              "three real solutions.\033[0m")
+        discriminant3_negative(formula, discriminant, q)
+
+
+def find_coefficients(formula):
     a = formula["x3"]
     b = formula["x2"]
     c = formula["x1"]
     d = formula["x0"]
 
-    d0, d1 = solve_discriminant3(a, b, c, d)
+    print("\033[35mCoefficients for calculating the discriminant:\033[0m")
 
-    if d0 > 0 and d1 > 0:
-        print("У уравнения три вещественных корня.")
-        # solve_case1(a, b, c, d, d0, d1)
-    elif d0 > 0 and d1 < 0:
-        print("У уравнения один вещественный корень и два комплексных корня.")
-        # solve_case2(a, b, c, d, d0, d1)
-    elif d0 > 0 and d1 == 0:
-        print("Этот случай не произойдет")
-        # solve_case3(a, b, c, d, d0, d1)
-    elif d0 < 0 and d1 > 0:
-        print("У уравнения один вещественный корень и два комплексных корня.")
-        solve_case4(a, b, c, d, d0, d1)
-    elif d0 < 0 and d1 < 0:
-        print("У уравнения один вещественный корень и два комплексных корня.")
-        # solve_case5(a, b, c, d, d0, d1)
-    elif d0 < 0 and d1 == 0:
-        print("У уравнения один вещественный корень и два комплексных корня.")
-        # solve_case6(a, b, c, d, d0, d1)
-    elif d0 == 0 and d1 > 0:
-        print("Этот случай не произойдет")
-    elif d0 == 0 and d1 < 0:
-        print("У уравнения один вещественный корень и два комплексных корня.")
-        # solve_case8(a, b, c, d, d0, d1)
-    elif d0 == 0 and d1 == 0:
-        print("У уравнения три кратных корня")
-        # solve_case9(a, b, c, d, d0, d1)
+    p = (3 * a * c - b * b) / (3 * a * a)
+    print("Cubic Cauchy Coefficient:")
+    print(f"\033[3mp\033[0m = (3 * ({conv_float(a)}) * ({conv_float(c)}) - "
+          f"({conv_float(b)})^2) / (3 * ({conv_float(a)})^2)")
+    print(f"\033[3mp\033[0m = \033[1m{conv_float(p)}\033[0m")
+
+    q = (2 * b * b * b - 9 * a * b * c + 27 * a * a * d) / (27 * a * a * a)
+    print("Cubic Viète Coefficient:")
+    print(f"\033[3mq\033[0m = (2 * ({conv_float(b)})^3 - 9 * "
+          f"({conv_float(a)}) * ({conv_float(b)}) * ({conv_float(c)}) + "
+          f"27 * ({conv_float(a)})^2 * ({conv_float(d)})) / "
+          f"(27 * ({conv_float(a)})^3)")
+    print(f"\033[3mq\033[0m = \033[1m{conv_float(q)}\033[0m\n")
+    return p, q
+
+
+def solve_discriminant3(p, q):
+    print("\033[35mCalculate the \033[1mdiscriminant:\033[0m")
+
+    print(f"Δ = ({conv_float(q)})^2 / 4 + ({conv_float(p)})^3 / 27")
+    discriminant = q * q / 4 + p * p * p / 27
+    d1 = q * q / 4
+    d2 = p * p * p / 27
+    sign = '+' if d2 >= 0 else '-'
+    d2 = abs(d2)
+    print(f"Δ = {conv_float(d1)} {sign} {conv_float(d2)}")
+    print(f"Δ = \033[1m{conv_float(discriminant)}\033[0m\n")
+    return discriminant
+
+
+def discriminant3_negative(formula, discriminant, q):
+    a = formula["x3"]
+    b = formula["x2"]
+
+    print("Roots of a cubic equation:")
+    alpha = (-q / 2 + discriminant ** 0.5) ** (1 / 3)
+    beta = (-q / 2 - discriminant ** 0.5) ** (1 / 3)
+    print(f"\033[3mα\033[0m = \u221B(-({conv_float(q)}) / "
+          f"2 + ({conv_float(discriminant)})^2)")
+    print(f"\033[3mβ\033[0m = \u221B(-({conv_float(q)}) / "
+          f"2 - ({conv_float(discriminant)})^2)\n")
+
+    x1 = alpha + beta - b / (3 * a)
+    x2 = -(alpha + beta) / 2 - b / (3 * a) + (alpha - beta) * 3 ** 0.5 / 2j
+    x3 = -(alpha + beta) / 2 - b / (3 * a) - (alpha - beta) * 3 ** 0.5 / 2j
+
+    print(f"X1 = \033[3mα\033[0m + \033[3mβ\033[0m - {conv_float(b)} /"
+          f" (3 * {conv_float(a)})")
+    print(f"X2 = -(\033[3mα\033[0m + \033[3mβ\033[0m) / 2 - {conv_float(b)} /"
+          f" (3 * {conv_float(a)}) + (\033[3mα\033[0m - "
+          f"\033[3mβ\033[0m) * \u221A3/ 2i")
+    print(f"X3 = -(\033[3mα\033[0m + \033[3mβ\033[0m) / 2 - {conv_float(b)} /"
+          f" (3 * {conv_float(a)}) - (\033[3mα\033[0m - "
+          f"\033[3mβ\033[0m) * \u221A3/ 2i\n")
+
+    x1 = round(x1.real, 10)
+    x2 = round(x2.real, 10)
+    x3 = round(x3.real, 10)
+
+    print("\033[35mThe solutions are:\033[0m")
+    print(f"X1 = \033[35m\033[1m{conv_float(x1)}\033[0m")
+    print(f"X2 = \033[35m\033[1m{conv_float(x2)}\033[0m")
+    print(f"X3 = \033[35m\033[1m{conv_float(x3)}\033[0m\n")
+
+
+def discriminant3_zero(formula, q):
+    a = formula["x3"]
+    b = formula["x2"]
+    if q >= 0:
+        x1 = -2 * q ** (1 / 3) - b / (3 * a)
+        x2 = q ** (1 / 3) - b / (3 * a)
+        print(f"X1 = -2 * \u221B({conv_float(q)}) - ({conv_float(b)}) / "
+              f"(3 * ({conv_float(a)}))")
+        print(f"X2 = X3 = \u221B({conv_float(q)}) - ({conv_float(b)}) / "
+              f"(3 * ({conv_float(a)}))\n")
+    else:
+        x1 = q ** (1 / 3) - b / (3 * a)
+        x2 = -(q ** (1 / 3) + b / (3 * a)) / 2
+        print(f"X1 = \u221B({conv_float(q)}) - ({conv_float(b)}) / "
+              f"(3 * ({conv_float(a)}))")
+        print(f"X2 = X3 = -(\u221B({conv_float(q)}) + ({conv_float(b)}) / "
+              f"(3 * ({conv_float(a)})) / 2)\n")
+
+    print("\033[35mThe solutions are:\033[0m")
+    if x1 == x2:
+        print(f"X1 = X2 = X3 = \033[35m\033[1m{conv_float(x1)}\033[0m\n")
+    else:
+        print(f"X1 = \033[35m\033[1m{conv_float(x1)}\033[0m")
+        print(f"X2 = X3 = \033[35m\033[1m{conv_float(x2)}\033[0m\n")
+
+
+def discriminant3_positive(formula, discriminant, q):
+    a = formula["x3"]
+    b = formula["x2"]
+
+    print("Roots of a cubic equation:")
+    r = -q / 2 + (discriminant * 0.5)
+    s = -q / 2 - (discriminant * 0.5)
+    print(f"\033[3mr\033[0m = -({conv_float(q)}) / 2 + "
+          f"({conv_float(discriminant)}) / 2")
+    print(f"\033[3ms\033[0m = -({conv_float(q)}) / 2 - "
+          f"({conv_float(discriminant)}) / 2")
+    u = r**(1/3) if r >= 0 else -(-r)**(1/3)
+    v = s**(1/3) if s >= 0 else -(-s)**(1/3)
+
+    if r >= 0:
+        print(f"\033[3mu\033[0m = \u221B{conv_float(r)}")
+    else:
+        print(f"\033[3mu\033[0m = -\u221B{conv_float(-r)}")
+
+    if s >= 0:
+        print(f"\033[3mv\033[0m = \u221B{conv_float(s)}\n")
+    else:
+        print(f"\033[3mv\033[0m = -\u221B{conv_float(-s)}\n")
+
+    x1 = u + v - b / (3 * a)
+    # x2 = -(u + v) / 2 - b / (3 * a) + (u - v) * 3 ** 0.5 / 2j
+    # x3 = -(u + v) / 2 - b / (3 * a) - (u - v) * 3 ** 0.5 / 2j
+
+    sign1 = '+' if v >= 0 else '-'
+    sign2 = '-' if b / a >= 0 else '+'
+    print(f"X1 = {conv_float(u)} {sign1} {conv_float(abs(v))} {sign2} "
+          f"{conv_float(abs(b))} / (3 * {conv_float(abs(a))})")
+    print(f"X2 = -({conv_float(u)} {sign1} {conv_float(abs(v))}) / 2 "
+          f"{sign2} {conv_float(abs(b))} / (3 * {conv_float(abs(a))}) + "
+          f"({conv_float(u)} {sign1} {conv_float(abs(v))}) * \u221A3 / 2i")
+    print(f"X3 = -({conv_float(u)} {sign1} {conv_float(abs(v))}) / 2 "
+          f"{sign2} {conv_float(abs(b))} / (3 * {conv_float(abs(a))}) - "
+          f"({conv_float(u)} {sign1} {conv_float(abs(v))}) * \u221A3 / 2i\n")
+
+    x1 = round(x1.real, 10)
+    x2p1 = -(u + v) / 2 - b / (3 * a)
+    x2p2 = (u - v) * 3 ** 0.5 / 2j
+
+    print("\033[35mThe solutions are:\033[0m")
+    print(f"X1 = \033[35m\033[1m{conv_float(x1)}\033[0m")
+
+    print(f"X2 = \033[35m\033[1m{conv_float(x2p1)} + ({(x2p2)})\033[0m")
+    print(f"X3 = \033[35m\033[1m{conv_float(x2p1)} - ({(x2p2)})\033[0m\n")

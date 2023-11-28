@@ -29,6 +29,8 @@ def main(argv):
         print("Entry don't have the right format!")  # change message
     except ZeroDivisionError:
         print("ZeroDivisionError")
+    except TypeError as e:
+        print(f"TypeError: {e}")
 
 
 if __name__ == "__main__":

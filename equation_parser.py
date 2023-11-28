@@ -91,8 +91,8 @@ def argv_parser(arg_str):
     left_side = split_equation(sides_equation[0])
     right_side = split_equation(sides_equation[1])
 
-    print(left_side)  # DELETE
-    print(right_side)  # DELETE
+    # print(left_side)  # DELETE
+    # print(right_side)  # DELETE
 
     parse_sides(f_list, left_side, 'l')
     parse_sides(f_list, right_side, 'r')
