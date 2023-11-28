@@ -2,6 +2,8 @@ from output_formatter import print_full_form
 
 
 def argv_check(str):
+    """Checks the validity of the input equation string."""
+
     if str.count('=') != 1:
         return False
     for i, char in enumerate(str):
@@ -37,6 +39,7 @@ def argv_check(str):
 
 
 def split_equation(part_str):
+    """Splits the equation string into list based on the symbols '+' '-'."""
     equation_parts = part_str.split('+')
     split_parts = []
 
@@ -52,38 +55,52 @@ def split_equation(part_str):
 
 
 def parse_sides(f_list, side, p):
+    """Parses the equation side and updates the coefficient dictionary."""
+
     for s in side:
         index = s.find("*X^")
         if (index > 0):
             num = float(s[:index])
             index += 3
             order = int(s[index])
-            f_list[f'x{order}'].append(num) if p == 'l' else f_list[f'x{order}'].append(-num)
+            f_list[f'x{order}'].append(num) if p == 'l' \
+                else f_list[f'x{order}'].append(-num)
         else:
             index_any = s.find("X^")
             if index_any == 0:
                 order = int(s[index_any + 2])
-                f_list[f'x{order}'].append(1) if p == 'l' else f_list[f'x{order}'].append(-1)
+                f_list[f'x{order}'].append(1) if p == 'l' \
+                    else f_list[f'x{order}'].append(-1)
             elif index_any == 1 and s[0] == '-':
                 order = int(s[index_any + 2])
-                f_list[f'x{order}'].append(-1) if p == 'l' else f_list[f'x{order}'].append(1)
+                f_list[f'x{order}'].append(-1) if p == 'l' \
+                    else f_list[f'x{order}'].append(1)
             else:
                 index1 = s.find("X")
                 if index1 == 0:
-                    f_list['x1'].append(1) if p == 'l' else f_list['x1'].append(-1)
+                    f_list['x1'].append(1) if p == 'l' \
+                        else f_list['x1'].append(-1)
                 elif index1 == 1 and s[0] == '-':
-                    f_list['x1'].append(-1) if p == 'l' else f_list['x1'].append(1)
+                    f_list['x1'].append(-1) if p == 'l' \
+                        else f_list['x1'].append(1)
                 elif index1 > 0:
                     num = float(s[:index - 1])
-                    f_list['x1'].append(num) if p == 'l' else f_list['x1'].append(-num)
+                    f_list['x1'].append(num) if p == 'l' \
+                        else f_list['x1'].append(-num)
                 elif s:
                     num = float(s)
-                    f_list['x0'].append(num) if p == 'l' else f_list['x0'].append(-num)
+                    f_list['x0'].append(num) if p == 'l' \
+                        else f_list['x0'].append(-num)
 
 
 def argv_parser(arg_str):
+    """
+    Parse the input string of an equation.
+    Create a dictionary of equation coefficients for printing the full form,
+    Then returns a dictionary with coefficients for calculations.
+    formula = {"x0": 0, "x1": 0, "x2": 0, "x3": 0}
+    """
     f_list = {"x0": [], "x1": [], "x2": [], "x3": []}
-    # formula = {"x0": 0, "x1": 0, "x2": 0, "x3": 0}
 
     sides_equation = arg_str.split('=')
 
@@ -94,6 +111,4 @@ def argv_parser(arg_str):
     parse_sides(f_list, right_side, 'r')
     print_full_form(f_list)
 
-    # formula = {key: sum(values) for key, values in f_list.items()}
-    # return formula
     return {key: sum(values) for key, values in f_list.items()}

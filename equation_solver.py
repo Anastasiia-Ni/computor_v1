@@ -5,10 +5,16 @@ from utils import irreducible_fraction, print_one_fraction
 
 
 def conv_float(num):
+    """
+    Converts a number to an integer if it's a whole number;
+    otherwise, rounds to 4 decimal places.
+    """
     return int(num) if float(num).is_integer() else round(num, 4)
 
 
 def addition_monomials(formula):
+    """Prints the result for a linear equation."""
+
     if formula["x0"]:
         print("\033[35mThis equation has \033[1mno solutions\033[0m "
               "\033[35mas it is false.\033[0m\n")
@@ -19,6 +25,8 @@ def addition_monomials(formula):
 
 
 def solve_linear_equation(formula):
+    """Solves and prints the result for a linear equation."""
+
     result = -formula["x0"] / formula["x1"]
     result = conv_float(result)
     print(f"\033[35m\033[1mX \033[0m\033[35m= {conv_float(-formula['x0'])} / "
@@ -30,6 +38,10 @@ def solve_linear_equation(formula):
 
 
 def solve_method(formula):
+    """
+    Selects and calls the appropriate solution method
+    based on the polynomial degree.
+    """
     # next() используется для получения первого элемента, по условию
     polynom = \
         next((i for i in range(len(formula)-1, -1, -1) if formula[f'x{i}']), 0)

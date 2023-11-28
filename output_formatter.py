@@ -1,6 +1,5 @@
-
-# Вывод уравнения в упрощенной форме.
 def output_reduced_form(formula):
+    """Outputs the equation in its simplified form."""
     reduced_form = ""
 
     coefficients = [formula[f'x{i}'] for i in range(4)]
@@ -27,7 +26,8 @@ def output_reduced_form(formula):
 
 
 def print_full_form(f_list):
-    # f_list = {"x0": [], "x1": [], "x2": [], "x3": []}
+    """Prints the equation in its full form."""
+
     expression = ""
     for i, (key, values) in enumerate(f_list.items()):
         for _, value in enumerate(values):
@@ -48,14 +48,6 @@ def print_full_form(f_list):
 
 # Вывод степени полинома.
 def output_polynomial_degree(polynom):
+    """Outputs the degree of the polynomial."""
+
     print(f"\033[33mPolynomial degree: \033[1m{polynom}\033[0m\n")
-
-
-def output_solution(discriminant, answer):
-    if discriminant > 0:
-        print("Discriminant is strictly positive, the two solutions are:")
-        print(answer[0])
-        print(answer[1])
-    if discriminant == 0:
-        print("The solution is:")
-        print(answer[0])

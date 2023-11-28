@@ -4,7 +4,6 @@ GREEN = '\033[92m'
 RED = '\033[91m'
 RESET = '\033[0m'
 
-
 def testing():
     bad_strs = [
     "11 * X^0 + 7 * X^1 = 77 * X^0 = 8 * X^1",

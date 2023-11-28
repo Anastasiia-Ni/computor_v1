@@ -6,6 +6,8 @@ from utils import print_error
 
 
 def main(argv):
+    """Main function for processing command line arguments and computations."""
+
     if len(argv) == 1:
         print("There must be one argument")
         return
@@ -22,8 +24,9 @@ def main(argv):
         output_reduced_form(formula)
         solve_method(formula)
 
+    except AssertionError as e:
+        print(f"AssertionError: {e}")
     except IndexError:
-        print("IndexError")  # DELETE
         print("The formula syntax is incorrect")
     except ValueError:
         print("The formula syntax is incorrect")
@@ -31,6 +34,8 @@ def main(argv):
         print("ZeroDivisionError")
     except TypeError as e:
         print(f"TypeError: {e}")
+    except KeyError as e:
+        print(f"KeyError: {e}")
 
 
 if __name__ == "__main__":

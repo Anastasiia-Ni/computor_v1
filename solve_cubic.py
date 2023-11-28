@@ -1,9 +1,8 @@
 from utils import conv_float
-# import cmath
-# formula = {"x0":0, "x1": 0, "x2": 0, "x3": 0}
 
 
 def solve_cubic_equation(formula):
+    """Take the discriminant and determine method for further solution."""
 
     p, q = find_coefficients(formula)
     discriminant = solve_discriminant3(p, q)
@@ -23,6 +22,8 @@ def solve_cubic_equation(formula):
 
 
 def find_coefficients(formula):
+    """Finds the coefficients used in solving the discriminant."""
+
     a = formula["x3"]
     b = formula["x2"]
     c = formula["x1"]
@@ -47,6 +48,8 @@ def find_coefficients(formula):
 
 
 def solve_discriminant3(p, q):
+    """Calculates and prints the discriminant for a cubic equation."""
+
     print("\033[35mCalculate the \033[1mdiscriminant:\033[0m")
 
     print(f"Δ = ({conv_float(q)})^2 / 4 + ({conv_float(p)})^3 / 27")
@@ -61,6 +64,8 @@ def solve_discriminant3(p, q):
 
 
 def discriminant3_negative(formula, discriminant, q):
+    """Calculates and prints the solution when the discriminant is negative."""
+
     a = formula["x3"]
     b = formula["x2"]
 
@@ -96,6 +101,8 @@ def discriminant3_negative(formula, discriminant, q):
 
 
 def discriminant3_zero(formula, q):
+    """Calculates and prints the solution when the discriminant is zero."""
+
     a = formula["x3"]
     b = formula["x2"]
     if q >= 0:
@@ -122,6 +129,7 @@ def discriminant3_zero(formula, q):
 
 
 def discriminant3_positive(formula, discriminant, q):
+    """Calculates and prints the solution when the discriminant is positive."""
     a = formula["x3"]
     b = formula["x2"]
 

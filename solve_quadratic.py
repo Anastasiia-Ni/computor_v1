@@ -3,6 +3,7 @@ from utils import conv_float, irreducible_fraction, \
 
 
 def solve_discriminant2(formula):
+    """Calculates and prints the discriminant for a quadratic equation."""
     print("\033[35mCalculate the \033[1mdiscriminant:\033[0m")
     a = conv_float(formula["x2"])
     b = conv_float(formula["x1"])
@@ -20,6 +21,7 @@ def solve_discriminant2(formula):
 
 
 def discriminant2_zero(formula):
+    """Calculates and prints the solution when the discriminant is zero."""
     b = formula["x1"]
     a = formula["x2"]
     print(f"X = -({conv_float(b)}) / (2 * ({conv_float(a)}))")
@@ -33,6 +35,7 @@ def discriminant2_zero(formula):
 
 
 def discriminant2_positive(formula, d):
+    """Calculates and prints the solution when the discriminant is positive."""
     b = formula["x1"]
     a = formula["x2"]
 
@@ -61,6 +64,7 @@ def discriminant2_positive(formula, d):
 
 
 def discriminant2_negative(formula, d):
+    """Calculates and prints the solution when the discriminant is negative."""
     b = formula["x1"]
     a = formula["x2"]
 
@@ -85,11 +89,12 @@ def discriminant2_negative(formula, d):
 
 
 def solve_quadratic_equation(formula):
+    """Take the discriminant and determine the method for further solution."""
     d = solve_discriminant2(formula)
     if d == 0:
         print("\033[35mDiscriminant is zero, the equation has "
               "one real solution.\033[0m")
-        discriminant2_zero(formula, d)
+        discriminant2_zero(formula)
     elif d > 0:
         print("\033[35mDiscriminant is strictly positive, "
               "the equation has two solutions.\033[0m")
