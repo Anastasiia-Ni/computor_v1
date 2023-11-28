@@ -6,7 +6,7 @@ RESET = '\033[0m'
 
 
 def testing():
-    argv_strs = [
+    bad_strs = [
     "11 * X^0 + 7 * X^1 = 77 * X^0 = 8 * X^1",
     "11 * X^0 + 7 * X^1 = * ",
     "11 * X^0 + 7 * X^1 = + ",
@@ -31,7 +31,7 @@ def testing():
      "5X + X^2= X^2",
     ]
     print("Bad cases:")
-    for arg_str in argv_strs:
+    for arg_str in bad_strs:
         result = argv_check(arg_str.upper().replace(" ", ""))
         status = f'{GREEN}✓{RESET}' if not result else f'{RED}✗{RESET}'
         print(f'"{arg_str}": {result} : {status}')

@@ -3,7 +3,7 @@ def conv_float(num):
 
 
 def print_error():
-    print("The formula is not correct")
+    print("The formula syntax is incorrect")
 
 
 def find_gcd(a, b):
@@ -44,7 +44,7 @@ def print_one_fraction(form):
     print(f"X = \033[1m{form}\033[0m.\n")
 
 
-def print_two_fraction(form1, form2):
+def print_two_fractions(form1, form2):
     print("The irreducible fraction:")
     if form1:
         print(f"X1 = \033[1m{form1}\033[0m")

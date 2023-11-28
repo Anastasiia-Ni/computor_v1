@@ -26,7 +26,7 @@ def output_reduced_form(formula):
     print(f"\033[33m{s * '-'}\033[0m")
 
 
-def print_intermediate_form(f_list):
+def print_full_form(f_list):
     # f_list = {"x0": [], "x1": [], "x2": [], "x3": []}
     expression = ""
     for i, (key, values) in enumerate(f_list.items()):
@@ -40,16 +40,15 @@ def print_intermediate_form(f_list):
                 expression += f"- {abs(value)} * X^{i} "
 
     expression += "= 0"
-    s = len(expression) + 20
+    s = len(expression) + 15
     print(f"\033[32m{s * '-'}\033[0m")
-    print(f"\033[32mIntermediate form: \033[1m{expression}\033[0m")
+    print(f"\033[32mFull form: \033[1m{expression}\033[0m")
     print(f"\033[32m{s * '-'}\033[0m\n")
 
 
 # Вывод степени полинома.
 def output_polynomial_degree(polynom):
     print(f"\033[33mPolynomial degree: \033[1m{polynom}\033[0m\n")
-    # print("The polynomial degree is strictly greater than 2, I can't solve.")
 
 
 def output_solution(discriminant, answer):

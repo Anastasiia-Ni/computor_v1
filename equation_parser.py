@@ -1,36 +1,36 @@
-from output_formatter import print_intermediate_form
+from output_formatter import print_full_form
 
 
-def argv_check(input_str):
-    if input_str.count('=') != 1:
+def argv_check(str):
+    if str.count('=') != 1:
         return False
-    for i, char in enumerate(input_str):
+    for i, char in enumerate(str):
         if char not in set("0123456789^.*=+-X"):
             return False
-        if char == '*' and i < len(input_str) - 1 and input_str[i + 1] != 'X':
+        if char == '*' and i < len(str) - 1 and str[i + 1] != 'X':
             return False
-        if char in ('-', '+') and i < len(input_str) - 1:
-            if not input_str[i + 1].isdigit() and input_str[i + 1] != 'X':
+        if char in ('-', '+') and i < len(str) - 1:
+            if not str[i + 1].isdigit() and str[i + 1] != 'X':
                 return False
-        if char in set("+-*=") and i == len(input_str) - 1:
+        if char in set("+-*=") and i == len(str) - 1:
             return False
         if char == '^':
-            if i > 0 and input_str[i - 1] != 'X':
+            if i > 0 and str[i - 1] != 'X':
                 return False
-            if i < len(input_str) - 1 and input_str[i + 1] not in set('0123'):
+            if i < len(str) - 1 and str[i + 1] not in set('0123'):
                 return False
-            if i == 0 or i == len(input_str) - 1:
+            if i == 0 or i == len(str) - 1:
                 return False
-            if i < len(input_str) - 2 and input_str[i + 2] not in set('+-='):
+            if i < len(str) - 2 and str[i + 2] not in set('+-='):
                 return False
         if (char == '=' or char == '*') and i == 0:
             return False
-        if char == '.' and i > 0 and input_str[i - 1] == '.':
+        if char == '.' and i > 0 and str[i - 1] == '.':
             return False
         if char == 'X':
-            if i > 0 and input_str[i - 1] not in set('*+-='):
+            if i > 0 and str[i - 1] not in set('*+-='):
                 return False
-            elif i < len(input_str) - 1 and input_str[i + 1] not in set('^=+-'):
+            elif i < len(str) - 1 and str[i + 1] not in set('^=+-'):
                 return False
 
     return True
@@ -82,7 +82,6 @@ def parse_sides(f_list, side, p):
 
 
 def argv_parser(arg_str):
-    # print("PARSING START")
     f_list = {"x0": [], "x1": [], "x2": [], "x3": []}
     # formula = {"x0": 0, "x1": 0, "x2": 0, "x3": 0}
 
@@ -91,12 +90,9 @@ def argv_parser(arg_str):
     left_side = split_equation(sides_equation[0])
     right_side = split_equation(sides_equation[1])
 
-    # print(left_side)  # DELETE
-    # print(right_side)  # DELETE
-
     parse_sides(f_list, left_side, 'l')
     parse_sides(f_list, right_side, 'r')
-    print_intermediate_form(f_list)  # распечатать полную формулу
+    print_full_form(f_list)
 
     # formula = {key: sum(values) for key, values in f_list.items()}
     # return formula

@@ -1,4 +1,5 @@
-from utils import conv_float, irreducible_fraction, print_one_fraction, print_two_fraction
+from utils import conv_float, irreducible_fraction, \
+    print_one_fraction, print_two_fractions
 
 
 def solve_discriminant2(formula):
@@ -35,7 +36,8 @@ def discriminant2_positive(formula, d):
     b = formula["x1"]
     a = formula["x2"]
 
-    print(f"X = (-({conv_float(b)}) ± √{conv_float(d)}) / (2 * ({conv_float(a)}))")
+    print(f"X = (-({conv_float(b)}) ± √{conv_float(d)}) / "
+          f"(2 * ({conv_float(a)}))")
 
     x1 = (-b + (d ** 0.5)) / (2 * a)
     x2 = (-b - (d ** 0.5)) / (2 * a)
@@ -55,14 +57,15 @@ def discriminant2_positive(formula, d):
     ir_fract2 = irreducible_fraction(-b - (d ** 0.5), 2 * a)
 
     if ir_fract1 or ir_fract2:
-        print_two_fraction(ir_fract1, ir_fract2)
+        print_two_fractions(ir_fract1, ir_fract2)
 
 
 def discriminant2_negative(formula, d):
     b = formula["x1"]
     a = formula["x2"]
 
-    print(f"X = (-({conv_float(b)}) ± √{conv_float(d)}) / (2 * ({conv_float(a)}))")
+    print(f"X = (-({conv_float(b)}) ± √{conv_float(d)}) / "
+          f"(2 * ({conv_float(a)}))")
 
     d = abs(d)
     x1 = -b / (2 * a)
@@ -70,12 +73,11 @@ def discriminant2_negative(formula, d):
 
     sign = '' if b < 0 else '-'
     b2 = abs(b)
-    print(f"X = ({sign}{b2} ± {conv_float(d ** 0.5)}√-1) / ({conv_float(2 * a)})")
+    print(f"X = ({sign}{b2} ± {conv_float(d ** 0.5)}√-1) / "
+          f"({conv_float(2 * a)})")
     print("Let √-1 = i imaginary unit, then")
-    # if a < 0 ???
-    print(f"X = {conv_float(-b)} / {conv_float(2 * a)} ± {conv_float(d ** 0.5)}i / {conv_float(2 * a)}")
-    # print(f"X1 = ({conv_float(-b + (d ** 0.5))}i) / ({conv_float(2 * a)})")
-    # print(f"X2 = ({conv_float(-b - (d ** 0.5))}i) / ({conv_float(2 * a)})")
+    print(f"X = {conv_float(-b)} / {conv_float(2 * a)} ± "
+          f"{conv_float(d ** 0.5)}i / {conv_float(2 * a)}")
     x2 = abs(x2)
     print("\n\033[35mThe solutions are:\033[0m")
     print(f"X1 = \033[35m\033[1m{conv_float(x1)} - {conv_float(x2)}i\033[0m")
@@ -85,11 +87,14 @@ def discriminant2_negative(formula, d):
 def solve_quadratic_equation(formula):
     d = solve_discriminant2(formula)
     if d == 0:
-        print("\033[35mDiscriminant is zero, the equation has one real solution.\033[0m")
+        print("\033[35mDiscriminant is zero, the equation has "
+              "one real solution.\033[0m")
         discriminant2_zero(formula, d)
     elif d > 0:
-        print("\033[35mDiscriminant is strictly positive, the equation has two solutions.\033[0m")
+        print("\033[35mDiscriminant is strictly positive, "
+              "the equation has two solutions.\033[0m")
         discriminant2_positive(formula, d)
     else:
-        print("\033[35mDiscriminant is strictly negative, the equation has two complex solutions.\033[0m")
+        print("\033[35mDiscriminant is strictly negative, "
+              "the equation has two complex solutions.\033[0m")
         discriminant2_negative(formula, d)

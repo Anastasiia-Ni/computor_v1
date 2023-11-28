@@ -24,9 +24,9 @@ def main(argv):
 
     except IndexError:
         print("IndexError")  # DELETE
-        print("Entry don't have the right format!")  # change message
+        print("The formula syntax is incorrect")
     except ValueError:
-        print("Entry don't have the right format!")  # change message
+        print("The formula syntax is incorrect")
     except ZeroDivisionError:
         print("ZeroDivisionError")
     except TypeError as e:
