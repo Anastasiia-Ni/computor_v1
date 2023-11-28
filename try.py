@@ -31,7 +31,11 @@ from computor import main
 formula = "1 * X^3 - 7 * X^1 + 6 * X^0 = 0" # X1 = 1, X2 = 2, X3 = -3
 # formula = "3 * X^3 - 7 * X^2 - 7 * X^1 + 3 * X^0 = 0" # X1 = -1, X2 = 3, X3 = 0.333333
 # formula = "1 * X^3 - 6 * X^2 + 11 * X^1 - 6 * X^0 = 0" # X1 = 3, X2 = 2, X3 = 1
-# formula = "3 * x^3 -1 * x^2 + 6 * x^1 -2 * x^0 = 0" # 1 real and 2 complex
+# formula = "1 * X^3 + 5 * X^2 - 14 * X^1 = 0" # X1 = 2, X2 = 0, X3 = -7
+# formula = "2 * X^3 + 9 * X^2 + 13 * X^1 + 6 * X^0 = 0" # X1 = -1, X2 = -1.5, X3 = -2
+# formula = "3 * x^3 -1 * x^2 + 6 * x^1 - 2 * x^0 = 0" # X1 = 1.2291 and 2 complex
+# formula = "1 * X^3 - 3 * X^2 + 3 * X^1 - 1 * X^0 = 0" # X1 = X2 = X3 = 1
+# formula = "2 * X^3 - 11 * X^2 + 12 * X^1 + 9 * X^0 = 0" # X1 = -0.5, 2 complex
 
 
 #invalid cases
