@@ -1,21 +1,27 @@
 # Computor - Polynomial Equation Solver
 вставить каринку из терминала примера из сабджекта
 ## About the project
-This is a Python program that solves polynomial equations of the second or lower degree.
-It demonstrates the following functionalities:
-Из обязательной части задания
-- Берет из аргумента формулу вида ```Х=```
-- Displaying the equation in its reduced form.
-- Determining the degree of the equation.
-- Showing the solutions and the polarity of the discriminant if applicable.
-Из бонусной части
-- возможность добавления формата ```Х=```
-- Парсинг
-- Промежуточные шаги
-- форма дроби (для чисел интеджер)
+This Python program is designed to solve polynomial equations of the second degree or lower. 
 
-От меня добавлено решение уравнений третьего порядка
-вставить картинку с примером
+It showcases the following functionalities:
+
+**Mandatory part**
+- Takes a formula in the form of ```5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0```
+- Displaying the equation in its reduced form
+- Determining the degree of the equation
+- Shows the solutions and the discriminant's polarity if applicable
+
+**Bonus part**
+- Capability to add formulas like ```5 + 4 * X + X^2= X^2```
+- Parsing (vocabulary and syntax)
+- Display the intermediate steps
+- Presents solutions as irreducible fractions (for integer numbers)
+
+Additionally, the program supports solving equations of the third degree.
+
+вставить картинку с примером линейного уравнения
+квадратного уравнения
+кубического уравнения
 
 ## Introduction
 ### 
