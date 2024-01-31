@@ -1,27 +1,37 @@
 # Computor - Polynomial Equation Solver
-вставить каринку из терминала примера из сабджекта
+<img src="https://github.com/Anastasiia-Ni/computor_v1/blob/main/assets/SubjExample.png" width="500">
+
 ## About the project
 This Python program is designed to solve polynomial equations of the second degree or lower. 
 
 It showcases the following functionalities:
 
 **Mandatory part**
-- Takes a formula in the form of ```5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0```
+- Takes a formula in the form of ```"5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0"```
 - Displaying the equation in its reduced form
 - Determining the degree of the equation
 - Shows the solutions and the discriminant's polarity if applicable
 
 **Bonus part**
-- Capability to add formulas like ```5 + 4 * X + X^2= X^2```
+- Capability to add formulas like ```"5 + 4 * X + X^2= X^2"```
 - Manage entry mistakes (vocabulary and syntax)
 - Display the intermediate steps
 - Presents solutions as irreducible fractions (for integer numbers)
 
 Additionally, the program supports solving equations of the third degree.
 
-вставить картинку с примером линейного уравнения
-квадратного уравнения
-кубического уравнения
+```"6 * X^1 - 4 * X^0 = 14 * X^0"```
+
+<img src="https://github.com/Anastasiia-Ni/computor_v1/blob/main/assets/Linear.png" width="500">
+
+```"12 * X^2 = -1 * X^0 - 7 * X^1"```
+
+<img src="https://github.com/Anastasiia-Ni/computor_v1/blob/main/assets/Quadratic.png" width="500">
+
+```"2 * X^3 + 9 * X^2 + 13 * X^1 + 6 * X^0 = 0"```
+
+<img src="https://github.com/Anastasiia-Ni/computor_v1/blob/main/assets/%D0%A1ubic.png" width="500">
+
 
 ## Introduction
 ### Algorithm
