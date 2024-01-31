@@ -43,13 +43,13 @@ Additionally, the program supports solving equations of the third degree.
 
 ### Solution Methods
 #### Addition of Monomials
-The `addition_monomials` function checks if the equation is false or an identity and prints the appropriate message.
+- Check if the equation is false or an identity and print the appropriate message.
 
 #### Linear Equation
-The `solve_linear_equation` function solves and prints the result for a linear equation.
+- Solve and print the result for a linear equation.
 
 #### Quadratic Equation
-- The `solve_quadratic_equation` function calculates the discriminant and determines the method for further solution.
+- Calculate the discriminant and determine the method for further solution.
 - It includes methods for when the discriminant is zero, positive, or negative.
 
 #### Cubic Equation
