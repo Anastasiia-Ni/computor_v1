@@ -31,14 +31,13 @@ def find_coefficients(formula):
 
     print("\033[35mCoefficients for calculating the discriminant:\033[0m")
 
+    print("Cubic Viète Coefficients:")
     p = (3 * a * c - b * b) / (3 * a * a)
-    print("Cubic Cauchy Coefficient:")
     print(f"\033[3mp\033[0m = (3 * ({conv_float(a)}) * ({conv_float(c)}) - "
           f"({conv_float(b)})^2) / (3 * ({conv_float(a)})^2)")
     print(f"\033[3mp\033[0m = \033[1m{conv_float(p)}\033[0m")
 
     q = (2 * b * b * b - 9 * a * b * c + 27 * a * a * d) / (27 * a * a * a)
-    print("Cubic Viète Coefficient:")
     print(f"\033[3mq\033[0m = (2 * ({conv_float(b)})^3 - 9 * "
           f"({conv_float(a)}) * ({conv_float(b)}) * ({conv_float(c)}) + "
           f"27 * ({conv_float(a)})^2 * ({conv_float(d)})) / "

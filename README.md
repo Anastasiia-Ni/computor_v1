@@ -30,7 +30,7 @@ Additionally, the program supports solving equations of the third degree.
 
 ```"2 * X^3 + 9 * X^2 + 13 * X^1 + 6 * X^0 = 0"```
 
-<img src="https://github.com/Anastasiia-Ni/computor_v1/blob/main/assets/%D0%A1ubic.png" width="500">
+<img src="https://github.com/Anastasiia-Ni/computor_v1/blob/main/assets/Cubic.png" width="500">
 
 
 ## Introduction
